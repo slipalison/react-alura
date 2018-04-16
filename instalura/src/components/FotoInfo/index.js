@@ -3,12 +3,12 @@ import { array, string, bool } from 'prop-types';
 
 export default class FotoInfo extends Component {
   render(){
-    const {comentarios, comentario, likeada, likers, loginUsuario} =  this.props;
+    const {comentarios, comentario, /*likeada,*/ likers, loginUsuario} =  this.props;
     return(
       <div className="foto-info">
       <div className="foto-info-likes">
       {
-        likers.map(x=><a href="#" key={`${x.id}`}> {x.login}</a>,)
+        likers.map(x=><a href="/#" key={`${x.login}`}> {x.login}</a>,)
       } curtiram
       </div>
       <p className="foto-info-legenda">

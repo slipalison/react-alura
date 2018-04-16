@@ -15,15 +15,7 @@ import './css/login.css'
 
 
 const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
+  isAuthenticated: localStorage.getItem('token') ? true : false,
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -39,7 +31,7 @@ ReactDOM.render((
     <Switch>
         <PrivateRoute exact path="/Timeline" component={App} />
         <PrivateRoute exact path="/" component={App} />
-        <Route exact path="/Login" component={Login} />
+        <Route exact path="/Login" component={Login}  />
     </Switch>
   </Router>
 ), document.getElementById('root'));

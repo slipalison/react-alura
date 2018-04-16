@@ -10,7 +10,8 @@ export default class TimeLine extends Component {
   }
 
   componentDidMount= async () => {
-    const list = await fetch('http://instalura-api.herokuapp.com/api/public/fotos/rafael')
+    // 'http://instalura-api.herokuapp.com/api/public/fotos/rafael'
+    const list = await fetch(`http://instalura-api.herokuapp.com/api/fotos?X-AUTH-TOKEN=${localStorage.getItem('token')}` )
     .then(res => res.json())
     this.setState({fotos: list})
   }

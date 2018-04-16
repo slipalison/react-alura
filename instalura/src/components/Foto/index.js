@@ -7,7 +7,7 @@ import { object } from 'prop-types';
 export default class Foto extends Component {
 
   render(){
-    const {urlPerfil, loginUsuario, horario, urlFoto, id, likeada, likers, comentarios, comentario} = this.props.foto;
+    const {urlPerfil, loginUsuario, horario, urlFoto, likeada, likers, comentarios, comentario} = this.props.foto;
     return(
     <div className="foto">
       <FotoHeader urlPerfil={urlPerfil} loginUsuario={loginUsuario} horario={horario}/>

@@ -8,7 +8,7 @@ export default class FotoHeader extends Component {
       <figure className="foto-usuario">
         <img src={urlPerfil} alt="foto do usuario" />
         <figcaption className="foto-usuario">
-          <a href="#">
+          <a href="/#">
             {loginUsuario}
           </a>  
         </figcaption>
