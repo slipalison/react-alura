@@ -8,7 +8,7 @@ export default class FotoInfo extends Component {
       <div className="foto-info">
       <div className="foto-info-likes">
       {
-        likers.map(x=><a href="#"> {x.login}</a>,)
+        likers.map(x=><a href="#" key={`${x.id}`}> {x.login}</a>,)
       } curtiram
       </div>
       <p className="foto-info-legenda">

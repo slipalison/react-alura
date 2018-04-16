@@ -8,7 +8,6 @@ export default class Foto extends Component {
 
   render(){
     const {urlPerfil, loginUsuario, horario, urlFoto, id, likeada, likers, comentarios, comentario} = this.props.foto;
-    console.log(urlFoto);
     return(
     <div className="foto">
       <FotoHeader urlPerfil={urlPerfil} loginUsuario={loginUsuario} horario={horario}/>
