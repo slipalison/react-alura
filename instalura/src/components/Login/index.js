@@ -30,7 +30,6 @@ export default class Login extends Component {
         localStorage.setItem('token', login)
         this.props.history.push('/timeline')
       }
-    console.log(login);
   }
   render(){
     return(

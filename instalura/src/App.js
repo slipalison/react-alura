@@ -8,7 +8,7 @@ class App extends Component {
       <div id="root">
       <div className="main">
       <Header />
-      <TimeLine />
+      <TimeLine  {...this.props} />
       </div> 
     </div> 
     );
