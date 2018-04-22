@@ -11,8 +11,7 @@ export default class Header extends Component {
       return;
 
     const url = `http://instalura-api.herokuapp.com/api/public/fotos/${value}`;
-    const fotos = await fetch(url)
-    .then(res=> res.json());
+    const fotos = await fetch(url).then(res=> res.json());
     PubSub.publish('resultado-fotos', {fotos})
     this.busca.value = "";
   }

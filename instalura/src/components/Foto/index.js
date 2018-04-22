@@ -9,12 +9,12 @@ export default class Foto extends Component {
 
   render(){
     const isLoged = localStorage.getItem('token') ? true : false;
-    const {urlPerfil, loginUsuario, horario, urlFoto, likeada, likers, comentarios, comentario, id} = this.props.foto;
+    const { urlFoto } = this.props.foto;
     return(
     <div className="foto">
-      <FotoHeader urlPerfil={urlPerfil} loginUsuario={loginUsuario} horario={horario}/>
+      <FotoHeader {...this.props}/>
       <img alt="foto" className="foto-src" src={urlFoto} />
-      <FotoInfo comentarios={comentarios} id={id} loginUsuario={loginUsuario} comentario={comentario} likeada={likeada} likers={likers}/>
+      <FotoInfo {...this.props}/>
       { 
         isLoged ? 
         <FotoAutalizacoes {...this.props}/> : 

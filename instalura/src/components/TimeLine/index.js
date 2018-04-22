@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Foto from '../Foto';
 import PubSub from 'pubsub-js';
 import {TransitionGroup,  CSSTransition} from 'react-transition-group'
+import ServiceTimeline from '../../services/TimelineService'
 export default class TimeLine extends Component {
   constructor(props){
     super(props)
@@ -16,7 +17,6 @@ export default class TimeLine extends Component {
       this.setState({fotos: obj.fotos})
     });
   }
-  
 
   componentWillReceiveProps= async (nextProps) =>
   {
@@ -24,16 +24,10 @@ export default class TimeLine extends Component {
       this.carregaFoto(nextProps);
   }
 
-  carregaFoto = async (props) =>
-  {
-    const token = localStorage.getItem('token'); 
-    const url = token ? 
-      `http://instalura-api.herokuapp.com/api/fotos?X-AUTH-TOKEN=${localStorage.getItem('token')}`: 
-      `http://instalura-api.herokuapp.com/api/public/fotos/${props.match.params.login}`
-    const list = await fetch(url)
-      .then(res => res.json())
-    this.setState({fotos: list})
-  }
+  
+
+  carregaFoto = async (props) => 
+    this.setState({fotos: await ServiceTimeline.carregaFoto(props.match.params.login)})
 
   render(){
     return(
@@ -43,10 +37,14 @@ export default class TimeLine extends Component {
         {
           this.state.fotos.map(x => (
             <CSSTransition key={`${x.id}`} timeout={500} classNames="fade">
-              <Foto key={`${x.id}`} foto={x}/>
+              <Foto
+              key={`${x.id}`} 
+              foto={x} 
+              liked={ServiceTimeline.like} 
+              comentar={ServiceTimeline.comentar}/>
             </CSSTransition>))
         }
-        
+
       </TransitionGroup>
     </div>
 

@@ -4,7 +4,7 @@ import  { Link } from 'react-router-dom';
 
 export default class FotoHeader extends Component {
   render(){
-    const {urlPerfil, loginUsuario, horario} = this.props;
+    const {urlPerfil, loginUsuario, horario} = this.props.foto;
     return(
       <header className="foto-header">
       <figure className="foto-usuario">

@@ -8,34 +8,23 @@ export default class FotoAutalizacoes extends Component {
     this.state={
       isLiked: false
     }
+    this.id =this.props.foto.id;
   }
   componentDidMount= async () =>{
     this.setState({isLiked: this.props.foto.likeada})
   }
   like = async () =>{
-    const url = `http://instalura-api.herokuapp.com/api/fotos/${this.props.foto.id}/like?X-AUTH-TOKEN=${localStorage.getItem('token')}`;
-    const liked = await fetch(url,{method: 'POST'})
-      .then(res=> res.json());
+    
     this.setState({isLiked: !this.state.isLiked})
-    PubSub.publish('atualiza-like',{liker: liked, id: this.props.foto.id})
+    PubSub.publish('atualiza-like',await this.props.liked(this.id))
   }
+
   comentar = async (e) => {
     e.preventDefault();
-    
-    if(!this.comentario.value)
-      return;
-    const url = `http://instalura-api.herokuapp.com/api/fotos/${this.props.foto.id}/comment?X-AUTH-TOKEN=${localStorage.getItem('token')}`;
-    const comentario = await fetch(url,{
-      method: 'POST', 
-      body:JSON.stringify({texto: this.comentario.value}), 
-      headers: new Headers({
-        'Content-type':'application/json'
-      })
-    })
-    .then(res=> res.json());
-    PubSub.publish('atualiza-comentarios',{comentario, id: this.props.foto.id})
+    PubSub.publish('atualiza-comentarios', await this.props.comentar(this.id, this.comentario.value))
     this.comentario.value = "";
   }
+
   render(){
     return(
     <section className="fotoAtualizacoes">
