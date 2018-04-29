@@ -20,8 +20,7 @@ export default class TimeLine extends Component {
 
   componentWillReceiveProps= async (nextProps) =>
   {
-    if(nextProps.match.params.login)
-      this.carregaFoto(nextProps);
+    if(nextProps.match.params.login) this.carregaFoto(nextProps);
   }
 
   
